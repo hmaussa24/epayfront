@@ -9,7 +9,8 @@ const initialState = {
         sesionId: null,
         createdAt: null
     },
-    validate: null
+    validate: null, 
+    token: null,
 }
 
 export const compraSlice = createSlice({
@@ -19,6 +20,7 @@ export const compraSlice = createSlice({
         setCompra: (state, action) => {
             state.compra = action.payload.compra;
             state.validate = action.payload.validate
+            state.token = action.payload.token
         },
     },
 })

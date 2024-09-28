@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BodyComponent from '../components/Body';
 import HeaderComponent from '../components/Header';
 import { useSelector } from 'react-redux';
@@ -11,7 +11,17 @@ const ValidarToken = () => {
   const [error, setError] = useState({ token: '', sessionId: '' });
   const usuario = useSelector((state) => state.usuario);
   const sessionId = useSelector((state) => state.dataCompra.validate)
+  const tokenValidate = useSelector((state) => state.dataCompra.token)
   const navigate = useNavigate();
+
+  useEffect(() => {
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: tokenValidate,
+      showConfirmButton: true,
+    });
+  }, [tokenValidate])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -60,7 +70,7 @@ const ValidarToken = () => {
           <h2 className="text-2xl font-bold mb-6 text-center">Validar Compra</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700">Ingresa el token de 6 dígitos enviado al correo</label>
+              <label className="block text-sm font-medium text-gray-700">Copia e ingresa el token</label>
               <input
                 type="text"
                 value={token}
