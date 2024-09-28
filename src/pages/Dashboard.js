@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import HeaderComponent from '../components/Header';
 import BodyComponent from '../components/Body';
@@ -7,7 +7,6 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 
 const Dashboard = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [saldo, setSaldo] = useState(0);
   const [compras, setConpras] = useState([{id: 1, descripcion: "Carro", valor: 1000, fecha: "24-01-1989"}, {id: 1, descripcion: "Carro", valor: 1000, fecha: "24-01-1989"}]);

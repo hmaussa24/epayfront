@@ -1,21 +1,24 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import BodyComponent from '../components/Body';
 import HeaderComponent from '../components/Header';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import { setCompra } from '../redux/slices/compraSlice';
 
 const NuevaCompra = () => {
   const [descripcion, setDescripcion] = useState('');
   const [valor, setValor] = useState('');
   const usuario = useSelector((state) => state.usuario);
+  const dispatch = useDispatch()
   const navigate = useNavigate();
 
   const handleRegistrarCompra = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(`http://localhost:3001/api/comprar`, { usuarioId: usuario.id, descripcion, valor: parseInt(valor) })
+      dispatch(setCompra(response.data))
       navigate(`/validar`);
 
     } catch (error) {
