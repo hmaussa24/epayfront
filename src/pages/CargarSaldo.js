@@ -18,7 +18,7 @@ const CargarSaldo = () => {
         try {
             const response = await axios.put(`http://localhost:3001/api/cargar-saldo`, { documento: usuario.documento, celular: usuario.celular, monto: parseInt(monto) })
             Swal.fire({
-                title: "Saldo actualizado?",
+                title: "Saldo actualizado",
                 showDenyButton: true,
                 confirmButtonText: "Seguir recargando!",
                 denyButtonText: `ir a Dashboard`
